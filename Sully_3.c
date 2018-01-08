@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 int main(int ac, char **av) {
-int x = 5;
+int x = 3;
 if (!strstr(av[0], "_")) x++;
 ac = x;
 if (x <= 0) return 0;char *file;char *bin;char *exe;
