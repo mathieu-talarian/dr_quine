@@ -13,16 +13,11 @@ func quine() string {
 
 func bins(x int) bool {
 	compil := "go"
-	args := []string{"build", "-o", fmt.Sprintf("Sully_%d.go", x-1)}
+	args := []string{"run", fmt.Sprintf("./Sully_%d.go", x-1)}
 	fmt.Println(args)
-	err1 := exec.Command(compil, args...).Run()
+	err1 := exec.Command(compil, args...).Start()
+	fmt.Println(err1)
 	if err1 != nil {
-		return false
-	}
-	fmt.Println(x-1)
-	err2 := exec.Command(fmt.Sprintf("./Sully_%d", x-1)).Run()
-	fmt.Println(err2)
-	if err2 != nil {
 		return false
 	}
 	return true
@@ -42,8 +37,6 @@ func main() {
 	}
 	fmt.Fprintf(file, quine(), 10, 9, 34, quine(), x-1)
 	file.Close()
-	if !bins(x) {
-		return
-	}
+	bins(x)
 	return
 }
